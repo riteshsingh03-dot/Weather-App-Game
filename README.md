@@ -11,3 +11,5 @@ Done, Now I can start with the project<p>
 
 <p>Added geo-coding part of the code.<br>
 Got to learn about what is API itself, end-points of a url, how to pass certain parameters and how to view certain results.<p>
+
+<p>Added current weather part<p>

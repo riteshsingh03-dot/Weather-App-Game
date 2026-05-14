@@ -90,18 +90,42 @@ def mainCore():
 
     r=requests.get('https://geocoding-api.open-meteo.com/v1/search',{"name": name, "count":1})
     content = (r)
+    data = (r.json())
 
+    """"
     print("\n")
     print(r.status_code)
     print("\n")
-    data = (r.json())
+    
 
     print(data)
     print("\n")
+    """
+
     index=data["results"][0]
 
+    print("\n\n")
     print(f"City Name: {index["name"]}")
     print(f"Latitude: {index["latitude"]}, Longitude: {index["longitude"]}")
     print(f"Elevation: {index["elevation"]}")
+
+    #params={"longitude":index["longitude"],"latitude":index["latitude"]}
+
+    p=requests.get(f'https://api.open-meteo.com/v1/forecast?latitude={index["latitude"]}&longitude={index["longitude"]}&current=temperature_2m,relative_humidity_2m,apparent_temperature,is_day,wind_speed_10m,wind_direction_10m,rain')
+    weather=p.json()
+    currWeather=weather["current"]
+    #print(weather)
+
+    print("\n")
+    print(f"TimeZone: {weather["timezone"]}")
+    print(f"Time: {currWeather["time"]}")
+    print(f"Temperature: {currWeather["temperature_2m"]} °C")
+    print(f"Relative Humidity: {currWeather["relative_humidity_2m"]} %")
+    print(f"Apparent Temperature: {currWeather["apparent_temperature"]} °C")
+    print(f"Is_Daytime: {currWeather["is_day"]}")
+    print(f"Wind Speed: {currWeather["wind_speed_10m"]} km/h")
+    print(f"Wind Direction: {currWeather["wind_direction_10m"]} °")
+    print(f"Rain: {currWeather["rain"]} mm")
+    
 
 mainCore()
