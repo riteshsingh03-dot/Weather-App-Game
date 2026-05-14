@@ -61,6 +61,10 @@ def mainScreen():
         time.sleep(0.25)
         end()
 
+    if ch == 'a':
+        time.sleep(0.5)
+        mainCore()
+
 def welcome():
     os.system("cls")
     time.sleep(0.5)
@@ -76,4 +80,28 @@ def welcome():
     time.sleep(1)
     mainScreen()
 
-welcome()
+def mainCore():
+    os.system("cls")
+    print("Welcome to the Weather-App\n")
+    time.sleep(1)
+    print("Please Enter the name of the city")
+    time.sleep(0.5)
+    name=input("City Name: ")
+
+    r=requests.get('https://geocoding-api.open-meteo.com/v1/search',{"name": name, "count":1})
+    content = (r)
+
+    print("\n")
+    print(r.status_code)
+    print("\n")
+    data = (r.json())
+
+    print(data)
+    print("\n")
+    index=data["results"][0]
+
+    print(f"City Name: {index["name"]}")
+    print(f"Latitude: {index["latitude"]}, Longitude: {index["longitude"]}")
+    print(f"Elevation: {index["elevation"]}")
+
+mainCore()
