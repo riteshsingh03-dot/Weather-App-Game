@@ -42,7 +42,7 @@ def end():
 def mainScreen():
     os.system("cls")
     time.sleep(0.5)
-    print("Welcome!:\n")
+    print("Welcome!\n")
     time.sleep(0.5)
     print("What do you want to do:\n")
     time.sleep(0.55)
@@ -67,6 +67,10 @@ def mainScreen():
     if ch == 'a':
         time.sleep(0.5)
         mainCore()
+
+    if ch == 'b':
+        time.sleep(0.5)
+        gameCore()
 
 def welcome():
     os.system("cls")
@@ -204,7 +208,27 @@ def gameCore():
 
 
     cont = 0
-    while cont == 0:
+    score = 7
+
+    os.system("cls")
+    time.sleep(0.5)
+    print("Loading",end="")
+    time.sleep(0.35)
+    print(".",end="")
+    time.sleep(0.25)
+    print(".",end="")
+    time.sleep(0.25)
+    print(".",end="")
+    time.sleep(0.25)
+    print(".",end="")
+    time.sleep(0.25)
+    print(".",end="")
+    time.sleep(0.25)
+    os.system("cls")
+    time.sleep(0.5)
+
+
+    while cont == 0 and score != 0:
         city = random.choice(cities)
         time.sleep(0.5)
 
@@ -212,24 +236,7 @@ def gameCore():
         isDay = g["current"]["is_day"]
         weather = g["current"]["weather_code"]
 
-        os.system("cls")
-        time.sleep(0.5)
-        print("Loading",end="")
-        time.sleep(0.35)
-        print(".",end="")
-        time.sleep(0.25)
-        print(".",end="")
-        time.sleep(0.25)
-        print(".",end="")
-        time.sleep(0.25)
-        print(".",end="")
-        time.sleep(0.25)
-        print(".",end="")
-        time.sleep(0.25)
-        os.system("cls")
-        time.sleep(0.5)
-
-
+        
         print("You wake up in a random place.")
         time.sleep(2)
         print("On the table in front of you,",end=" ")
@@ -288,6 +295,7 @@ def gameCore():
         else:
             time.sleep(0.75)
             print("\nWrong Guess.")
+            score = score - 1
             time.sleep(0.85)
             if isDay == 1:
                 print("It was daytime.")
@@ -323,6 +331,7 @@ def gameCore():
         else:
             if weather == 0 or weather == 1:
                 print("You were wrong\n")
+                score = score - 1
                 time.sleep(1)
                 print("It was surpringly calm outside,",end=" ")
                 time.sleep(0.5)
@@ -331,6 +340,7 @@ def gameCore():
 
             elif weather > 1 and weather < 50:
                 print("You are surprised.\n")
+                score = score - 1
                 time.sleep(1)
                 print("The cloudy and foggy weather outside felt very different.")
                 time.sleep(1)
@@ -339,12 +349,14 @@ def gameCore():
 
             elif weather > 50:
                 print("To your surprise,",end=" ")
+                score = score - 1
                 time.sleep(0.5)
                 print("The weather was ferocious.")
                 time.sleep(1)
                 print("You were feeling afraid.\n")
                 time.sleep(2)
 
+        print(f"Your Score: {score}, Dont let it go zero, it reduces everytime you do a wrong guess.")
         print("Press c if you want to continue, otherwise press any key to exit.")
         
         ch3 = msvcrt.getch().decode()
@@ -353,10 +365,11 @@ def gameCore():
         else:
             cont = 1
 
+    os.system("cls")
     print("You suddenly wake up.")
     time.sleep(1.5)
     print("It was all a dream.")
     time.sleep(2)
     return
 
-gameCore()
+mainScreen()

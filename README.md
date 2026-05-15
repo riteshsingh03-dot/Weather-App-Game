@@ -20,4 +20,6 @@ So, I rather used a dictionary of 50 popular places.<br>
 Implelementing the game in a form of mysterious theme.<p>
 
 <p>Completed the core game part<br>
-Now I am supposed to implement a score thing in the core game<p>
+Now I am supposed to implement a score thing in the core game<br>
+Added Score System<br>
+Initial Code Completed, will improve in future.<p>
